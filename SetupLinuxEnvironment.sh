@@ -29,11 +29,24 @@ php7.1-curl php7.1-memcached \
 php7.1-imap php7.1-mysql php7.1-mbstring \
 php7.1-xml php7.1-zip php7.1-bcmath php7.1-soap \
 php7.1-intl php7.1-readline php-xdebug php-pear php7.1-fpm;\
-sudo apt install php7.1 libapache2-mod-php7.1 php7.1-common php7.1-mbstring php7.1-xmlrpc php7.1-soap php7.1-gd php7.1-xml php7.1-intl php7.1-mysql php7.1-cli php7.1-mcrypt php7.1-zip php7.1-curl ;
+sudo apt install php7.1 libapache2-mod-php7.1 php7.1-common php7.1-mbstring php7.1-xmlrpc php7.1-soap php7.1-gd php7.1-xml php7.1-intl php7.1-mysql php7.1-cli php7.1-mcrypt php7.1-zip php7.1-curl ;\
+sudo apt install php-pear php-fpm php-dev php-zip php-curl php-xmlrpc php-gd php-mysql php-mbstring php-xml libapache2-mod-php
+sudo service apache2 restart;
+
+#php 7.2
+sudo apt-get install -y --allow-downgrades --allow-remove-essential --allow-change-held-packages \
+php7.1-cli php7.2-dev \
+php7.2-pgsql php7.2-sqlite3 php7.2-gd \
+php7.2-curl php7.2-memcached \
+php7.2-imap php7.2-mysql php7.2-mbstring \
+php7.2-xml php7.2-zip php7.2-bcmath php7.2-soap \
+php7.2-intl php7.2-readline php-xdebug php-pear php7.2-fpm;\
+sudo apt install php7.2 libapache2-mod-php7.2 php7.2-common php7.2-mbstring php7.2-xmlrpc php7.2-soap php7.2-gd php7.2-xml php7.2-intl php7.2-mysql php7.2-cli php7.2-zip php7.2-curl ;\
+sudo apt-get install php-cli
 sudo service apache2 restart;
 
 #Change php version
-sudo update-alternatives --set php /usr/bin/php7.1;
+sudo update-alternatives --set php /usr/bin/php7.2;
 
 #Set some PHP CLI settings
 sudo sed -i "s/error_reporting = .*/error_reporting = E_ALL/" /etc/php/7.1/cli/php.ini; \
@@ -89,12 +102,27 @@ sudo apt install nodejs; \
 sudo apt install build-essential;
 sudo apt update ;
 
+######
+# [source](https://www.digitalocean.com/community/tutorials/how-to-set-up-a-node-js-application-for-production-on-ubuntu-18-04#step-3-%E2%80%94-installing-pm2)
+######
+
+# Set Up a Node.js Application
+    cd ~
+    curl -sL https://deb.nodesource.com/setup_8.x -o nodesource_setup.sh
+//nano nodesource_setup.sh
+sudo bash nodesource_setup.sh
+sudo apt install nodejs
+sudo apt install build-essential
+## Installing PM2
+sudo npm install pm2@latest -g
+
 # Install node npm
 sudo curl -L https://npmjs.com/install.sh | sudo sh ;
 
 # Install less + grunt
 sudo apt install npm -y;\
-sudo npm install -g less grunt grunt-cli;
+sudo npm install -g less grunt grunt-cli;\
+sudo npm install -g sass;
 
 # Install composer
 sudo curl -sS https://getcomposer.org/installer | sudo php; \
