@@ -107,14 +107,15 @@ sudo apt update ;
 ######
 
 # Set Up a Node.js Application
-    cd ~
-    curl -sL https://deb.nodesource.com/setup_8.x -o nodesource_setup.sh
-//nano nodesource_setup.sh
-sudo bash nodesource_setup.sh
-sudo apt install nodejs
-sudo apt install build-essential
+cd ~;\
+curl -sL https://deb.nodesource.com/setup_8.x -o nodesource_setup.sh;\
+#nano nodesource_setup.sh
+sudo bash nodesource_setup.sh;\
+sudo apt install nodejs;\
+sudo apt install build-essential;
+
 ## Installing PM2
-sudo npm install pm2@latest -g
+sudo npm install pm2@latest -g;
 
 # Install node npm
 sudo curl -L https://npmjs.com/install.sh | sudo sh ;
