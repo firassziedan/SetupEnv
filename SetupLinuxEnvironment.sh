@@ -55,23 +55,49 @@ sudo sed -i "s/memory_limit = .*/memory_limit = 512M/" /etc/php/7.1/cli/php.ini;
 sudo sed -i "s/;date.timezone.*/date.timezone = UTC/" /etc/php/7.1/cli/php.ini; \
 sudo service apache2 restart;
 
+#php 7.2
+sudo sed -i "s/error_reporting = .*/error_reporting = E_ALL/" /etc/php/7.2/cli/php.ini; \
+sudo sed -i "s/display_errors = .*/display_errors = On/" /etc/php/7.2/cli/php.ini; \
+sudo sed -i "s/memory_limit = .*/memory_limit = 512M/" /etc/php/7.2/cli/php.ini; \
+sudo sed -i "s/;date.timezone.*/date.timezone = UTC/" /etc/php/7.2/cli/php.ini; \
+sudo service apache2 restart;
+
 #Setup some PHP-FPM options
-echo "xdebug.remote_enable = 1" >> /etc/php/7.1/mods-available/xdebug.ini;\
-echo "xdebug.remote_connect_back = 1" >> /etc/php/7.1/mods-available/xdebug.ini;\
-echo "xdebug.remote_port = 9000" >> /etc/php/7.1/mods-available/xdebug.ini;\
-echo "xdebug.max_nesting_level = 512" >> /etc/php/7.1/mods-available/xdebug.ini;\
-echo "opcache.revalidate_freq = 0" >> /etc/php/7.1/mods-available/opcache.ini;\
-sed -i "s/error_reporting = .*/error_reporting = E_ALL/" /etc/php/7.1/fpm/php.ini;\
-sed -i "s/display_errors = .*/display_errors = On/" /etc/php/7.1/fpm/php.ini;\
-sed -i "s/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/" /etc/php/7.1/fpm/php.ini;\
-sed -i "s/memory_limit = .*/memory_limit = 512M/" /etc/php/7.1/fpm/php.ini;\
-sed -i "s/upload_max_filesize = .*/upload_max_filesize = 100M/" /etc/php/7.1/fpm/php.ini;\
-sed -i "s/post_max_size = .*/post_max_size = 100M/" /etc/php/7.1/fpm/php.ini;\
-sed -i "s/;date.timezone.*/date.timezone = UTC/" /etc/php/7.1/fpm/php.ini;\
-printf "[openssl]\n" | tee -a /etc/php/7.1/fpm/php.ini;\
-printf "openssl.cainfo = /etc/ssl/certs/ca-certificates.crt\n" | tee -a /etc/php/7.1/fpm/php.ini;\
-printf "[curl]\n" | tee -a /etc/php/7.1/fpm/php.ini;\
-printf "curl.cainfo = /etc/ssl/certs/ca-certificates.crt\n" | tee -a /etc/php/7.1/fpm/php.ini;
+sudo echo "xdebug.remote_enable = 1" >> /etc/php/7.1/mods-available/xdebug.ini;\
+sudo echo "xdebug.remote_connect_back = 1" >> /etc/php/7.1/mods-available/xdebug.ini;\
+sudo echo "xdebug.remote_port = 9000" >> /etc/php/7.1/mods-available/xdebug.ini;\
+sudo echo "xdebug.max_nesting_level = 512" >> /etc/php/7.1/mods-available/xdebug.ini;\
+sudo echo "opcache.revalidate_freq = 0" >> /etc/php/7.1/mods-available/opcache.ini;\
+sudo sed -i "s/error_reporting = .*/error_reporting = E_ALL/" /etc/php/7.1/fpm/php.ini;\
+sudo sed -i "s/display_errors = .*/display_errors = On/" /etc/php/7.1/fpm/php.ini;\
+sudo sed -i "s/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/" /etc/php/7.1/fpm/php.ini;\
+sudo sed -i "s/memory_limit = .*/memory_limit = 512M/" /etc/php/7.1/fpm/php.ini;\
+sudo sed -i "s/upload_max_filesize = .*/upload_max_filesize = 100M/" /etc/php/7.1/fpm/php.ini;\
+sudo sed -i "s/post_max_size = .*/post_max_size = 100M/" /etc/php/7.1/fpm/php.ini;\
+sudo sed -i "s/;date.timezone.*/date.timezone = UTC/" /etc/php/7.1/fpm/php.ini;\
+sudo printf "[openssl]\n" | tee -a /etc/php/7.1/fpm/php.ini;\
+sudo printf "openssl.cainfo = /etc/ssl/certs/ca-certificates.crt\n" | tee -a /etc/php/7.1/fpm/php.ini;\
+sudo printf "[curl]\n" | tee -a /etc/php/7.1/fpm/php.ini;\
+sudo printf "curl.cainfo = /etc/ssl/certs/ca-certificates.crt\n" | tee -a /etc/php/7.1/fpm/php.ini;
+
+#php 7.2
+sudo echo "xdebug.remote_enable = 1" >> /etc/php/7.2/mods-available/xdebug.ini;\
+sudo echo "xdebug.remote_connect_back = 1" >> /etc/php/7.2/mods-available/xdebug.ini;\
+sudo echo "xdebug.remote_port = 9000" >> /etc/php/7.2/mods-available/xdebug.ini;\
+sudo echo "xdebug.max_nesting_level = 512" >> /etc/php/7.2/mods-available/xdebug.ini;\
+sudo echo "opcache.revalidate_freq = 0" >> /etc/php/7.2/mods-available/opcache.ini;\
+sudo sed -i "s/error_reporting = .*/error_reporting = E_ALL/" /etc/php/7.2/fpm/php.ini;\
+sudo sed -i "s/display_errors = .*/display_errors = On/" /etc/php/7.2/fpm/php.ini;\
+sudo sed -i "s/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/" /etc/php/7.2/fpm/php.ini;\
+sudo sed -i "s/memory_limit = .*/memory_limit = 512M/" /etc/php/7.2/fpm/php.ini;\
+sudo sed -i "s/upload_max_filesize = .*/upload_max_filesize = 100M/" /etc/php/7.2/fpm/php.ini;\
+sudo sed -i "s/post_max_size = .*/post_max_size = 100M/" /etc/php/7.2/fpm/php.ini;\
+sudo sed -i "s/;date.timezone.*/date.timezone = UTC/" /etc/php/7.2/fpm/php.ini;\
+sudo printf "[openssl]\n" | tee -a /etc/php/7.2/fpm/php.ini;\
+sudo printf "openssl.cainfo = /etc/ssl/certs/ca-certificates.crt\n" | tee -a /etc/php/7.2/fpm/php.ini;\
+sudo printf "[curl]\n" | tee -a /etc/php/7.2/fpm/php.ini;\
+sudo printf "curl.cainfo = /etc/ssl/certs/ca-certificates.crt\n" | tee -a /etc/php/7.2/fpm/php.ini;
+
 
 # make sure important apache modules are enabled
 sudo a2enmod headers rewrite env mime expires ssl;\
