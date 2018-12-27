@@ -62,7 +62,7 @@ sudo sed -i "s/memory_limit = .*/memory_limit = 512M/" /etc/php/7.2/cli/php.ini;
 sudo sed -i "s/;date.timezone.*/date.timezone = UTC/" /etc/php/7.2/cli/php.ini; \
 sudo service apache2 restart;
 
-#Setup some PHP-FPM options
+#Setup some PHP-FPM options Php 7.1
 sudo echo "xdebug.remote_enable = 1" >> /etc/php/7.1/mods-available/xdebug.ini;\
 sudo echo "xdebug.remote_connect_back = 1" >> /etc/php/7.1/mods-available/xdebug.ini;\
 sudo echo "xdebug.remote_port = 9000" >> /etc/php/7.1/mods-available/xdebug.ini;\
@@ -139,31 +139,32 @@ sudo bash nodesource_setup.sh;\
 sudo apt install nodejs;\
 sudo apt install build-essential;
 
-## Installing PM2
-sudo npm install pm2@latest -g;
-
 # Install node npm
 sudo curl -L https://npmjs.com/install.sh | sudo sh ;
 
-# Install less + grunt
+
+## Installing PM2
+sudo npm install pm2@latest -g;
+
+
+# Install less + grunt + sass + less-each
 sudo apt install npm -y;\
 sudo npm install -g less grunt grunt-cli;\
-sudo npm install -g sass;
+sudo npm install -g sass;\
+npm install gulp-less;\
+npm i lessc-each;
 
 # Install composer
 sudo curl -sS https://getcomposer.org/installer | sudo php; \
 sudo mv composer.phar /usr/local/bin/composer; \
 sudo ln -s /usr/local/bin/composer /usr/bin/composer;
 
-# Drush install latest (8.x)
+# Drush install latest (9.x)
 sudo git clone https://github.com/drush-ops/drush.git /usr/local/src/drush;\
 cd /usr/local/src/drush;\
-sudo git checkout 8.1.15;\
+sudo git checkout 9.5.2;\
 sudo ln -s /usr/local/src/drush/drush /usr/bin/drush;\
 sudo composer install;
-
-# Enable autocompleting drush commands
-sudo cp /usr/local/src/drush/drush.complete.sh /etc/bash_completion.d/
 
 #java
 sudo apt-get install default-jre -y ; \
