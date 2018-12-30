@@ -45,6 +45,18 @@ sudo apt install php7.2 libapache2-mod-php7.2 php7.2-common php7.2-mbstring php7
 sudo apt-get install php-cli
 sudo service apache2 restart;
 
+#php 7.3
+sudo apt-get install -y --allow-downgrades --allow-remove-essential --allow-change-held-packages \
+php7.3-cli php7.3-dev \
+php7.3-pgsql php7.3-sqlite3 php7.3-gd \
+php7.3-curl php7.3-memcached \
+php7.3-imap php7.3-mysql php7.3-mbstring \
+php7.3-xml php7.3-zip php7.3-bcmath php7.3-soap \
+php7.3-intl php7.3-readline php-xdebug php-pear php7.3-fpm;\
+sudo apt install php7.3 libapache2-mod-php7.3 php7.3-common php7.3-mbstring php7.3-xmlrpc php7.3-soap php7.3-gd php7.3-xml php7.3-intl php7.3-mysql php7.3-cli php7.3-zip php7.3-curl ;\
+sudo apt-get install php-cli
+sudo service apache2 restart;
+
 #Change php version
 sudo update-alternatives --set php /usr/bin/php7.2;
 
@@ -60,6 +72,13 @@ sudo sed -i "s/error_reporting = .*/error_reporting = E_ALL/" /etc/php/7.2/cli/p
 sudo sed -i "s/display_errors = .*/display_errors = On/" /etc/php/7.2/cli/php.ini; \
 sudo sed -i "s/memory_limit = .*/memory_limit = 512M/" /etc/php/7.2/cli/php.ini; \
 sudo sed -i "s/;date.timezone.*/date.timezone = UTC/" /etc/php/7.2/cli/php.ini; \
+sudo service apache2 restart;
+
+#Php 7.3
+sudo sed -i "s/error_reporting = .*/error_reporting = E_ALL/" /etc/php/7.3/cli/php.ini; \
+sudo sed -i "s/display_errors = .*/display_errors = On/" /etc/php/7.3/cli/php.ini; \
+sudo sed -i "s/memory_limit = .*/memory_limit = 512M/" /etc/php/7.3/cli/php.ini; \
+sudo sed -i "s/;date.timezone.*/date.timezone = UTC/" /etc/php/7.3/cli/php.ini; \
 sudo service apache2 restart;
 
 #Setup some PHP-FPM options Php 7.1
@@ -80,7 +99,7 @@ sudo printf "openssl.cainfo = /etc/ssl/certs/ca-certificates.crt\n" | tee -a /et
 sudo printf "[curl]\n" | tee -a /etc/php/7.1/fpm/php.ini;\
 sudo printf "curl.cainfo = /etc/ssl/certs/ca-certificates.crt\n" | tee -a /etc/php/7.1/fpm/php.ini;
 
-#php 7.2
+#Setup some PHP-FPM options php 7.2
 sudo echo "xdebug.remote_enable = 1" >> /etc/php/7.2/mods-available/xdebug.ini;\
 sudo echo "xdebug.remote_connect_back = 1" >> /etc/php/7.2/mods-available/xdebug.ini;\
 sudo echo "xdebug.remote_port = 9000" >> /etc/php/7.2/mods-available/xdebug.ini;\
@@ -98,13 +117,30 @@ sudo printf "openssl.cainfo = /etc/ssl/certs/ca-certificates.crt\n" | tee -a /et
 sudo printf "[curl]\n" | tee -a /etc/php/7.2/fpm/php.ini;\
 sudo printf "curl.cainfo = /etc/ssl/certs/ca-certificates.crt\n" | tee -a /etc/php/7.2/fpm/php.ini;
 
+#Setup some PHP-FPM options Php 7.3
+sudo echo "xdebug.remote_enable = 1" >> /etc/php/7.3/mods-available/xdebug.ini;\
+sudo echo "xdebug.remote_connect_back = 1" >> /etc/php/7.3/mods-available/xdebug.ini;\
+sudo echo "xdebug.remote_port = 9000" >> /etc/php/7.3/mods-available/xdebug.ini;\
+sudo echo "xdebug.max_nesting_level = 512" >> /etc/php/7.3/mods-available/xdebug.ini;\
+sudo echo "opcache.revalidate_freq = 0" >> /etc/php/7.3/mods-available/opcache.ini;\
+sudo sed -i "s/error_reporting = .*/error_reporting = E_ALL/" /etc/php/7.3/fpm/php.ini;\
+sudo sed -i "s/display_errors = .*/display_errors = On/" /etc/php/7.3/fpm/php.ini;\
+sudo sed -i "s/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/" /etc/php/7.3/fpm/php.ini;\
+sudo sed -i "s/memory_limit = .*/memory_limit = 512M/" /etc/php/7.3/fpm/php.ini;\
+sudo sed -i "s/upload_max_filesize = .*/upload_max_filesize = 100M/" /etc/php/7.3/fpm/php.ini;\
+sudo sed -i "s/post_max_size = .*/post_max_size = 100M/" /etc/php/7.3/fpm/php.ini;\
+sudo sed -i "s/;date.timezone.*/date.timezone = UTC/" /etc/php/7.3/fpm/php.ini;\
+sudo printf "[openssl]\n" | tee -a /etc/php/7.3/fpm/php.ini;\
+sudo printf "openssl.cainfo = /etc/ssl/certs/ca-certificates.crt\n" | tee -a /etc/php/7.3/fpm/php.ini;\
+sudo printf "[curl]\n" | tee -a /etc/php/7.3/fpm/php.ini;\
+sudo printf "curl.cainfo = /etc/ssl/certs/ca-certificates.crt\n" | tee -a /etc/php/7.3/fpm/php.ini;
 
 # make sure important apache modules are enabled
 sudo a2enmod headers rewrite env mime expires ssl;\
 sudo service apache2 restart ;
 
 
-#mysql 
+#mysql
 sudo apt update ;
 sudo apt-get install mysql-server -y ;
 sudo ufw allow mysql ;
@@ -116,11 +152,11 @@ sudo apt upgrade -y;
   #mysql> select * from user \G ;
   #Change root use plugin form  auth_socket  TO mysql_native_password to accept new  password
   #mysql> UPDATE user SET  plugin ='mysql_native_password' WHERE User = 'root';
-  #change user password 
+  #change user password
   #mysql> UPDATE user SET authentication_string = PASSWORD('root') WHERE User = 'root';
   #mysql> FLUSH PRIVILEGES;
   #mysql> exit;
-  
+
 # Install node js
 sudo curl -sL https://deb.nodesource.com/setup | sudo bash - ; \
 sudo apt install nodejs; \
@@ -179,7 +215,7 @@ sudo apt-get install oracle-java8-installer -y; \
   #JAVA_HOME="/usr/lib/jvm/java-8-oracle"
   #source /etc/environment
   #echo $JAVA_HOME
-  
+
   #Create ssh
   ssh-keygen -t rsa -b 4096;
     #copy the key
@@ -190,7 +226,7 @@ git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Crese
 # Use "git lg" instead of "git log"
 # git lg
 
-#Docker 
+#Docker
 sudo apt-get update ;
 sudo apt-get install apt-transport-https ca-certificates curl software-properties-common -y;
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add - ;
@@ -199,4 +235,3 @@ sudo apt-get update;
 sudo apt-get install docker-ce -y;
 #for testing
 sudo docker run hello-world
-
