@@ -118,11 +118,12 @@ sudo printf "[curl]\n" | tee -a /etc/php/7.2/fpm/php.ini;\
 sudo printf "curl.cainfo = /etc/ssl/certs/ca-certificates.crt\n" | tee -a /etc/php/7.2/fpm/php.ini;
 
 #Setup some PHP-FPM options Php 7.3
-sudo echo "xdebug.remote_enable = 1" >> /etc/php/7.3/mods-available/xdebug.ini;\
-sudo echo "xdebug.remote_connect_back = 1" >> /etc/php/7.3/mods-available/xdebug.ini;\
-sudo echo "xdebug.remote_port = 9000" >> /etc/php/7.3/mods-available/xdebug.ini;\
-sudo echo "xdebug.max_nesting_level = 512" >> /etc/php/7.3/mods-available/xdebug.ini;\
-sudo echo "opcache.revalidate_freq = 0" >> /etc/php/7.3/mods-available/opcache.ini;\
+
+sudo echo "xdebug.remote_enable = 1" >> sudo /etc/php/7.3/mods-available/xdebug.ini;\
+sudo echo "xdebug.remote_connect_back = 1" >> sudo  /etc/php/7.3/mods-available/xdebug.ini;\
+sudo echo "xdebug.remote_port = 9000" >> sudo  /etc/php/7.3/mods-available/xdebug.ini;\
+sudo echo "xdebug.max_nesting_level = 512" >>sudo  /etc/php/7.3/mods-available/xdebug.ini;\
+sudo echo "opcache.revalidate_freq = 0" >> sudo /etc/php/7.3/mods-available/opcache.ini;\
 sudo sed -i "s/error_reporting = .*/error_reporting = E_ALL/" /etc/php/7.3/fpm/php.ini;\
 sudo sed -i "s/display_errors = .*/display_errors = On/" /etc/php/7.3/fpm/php.ini;\
 sudo sed -i "s/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/" /etc/php/7.3/fpm/php.ini;\
@@ -130,10 +131,10 @@ sudo sed -i "s/memory_limit = .*/memory_limit = 512M/" /etc/php/7.3/fpm/php.ini;
 sudo sed -i "s/upload_max_filesize = .*/upload_max_filesize = 100M/" /etc/php/7.3/fpm/php.ini;\
 sudo sed -i "s/post_max_size = .*/post_max_size = 100M/" /etc/php/7.3/fpm/php.ini;\
 sudo sed -i "s/;date.timezone.*/date.timezone = UTC/" /etc/php/7.3/fpm/php.ini;\
-sudo printf "[openssl]\n" | tee -a /etc/php/7.3/fpm/php.ini;\
-sudo printf "openssl.cainfo = /etc/ssl/certs/ca-certificates.crt\n" | tee -a /etc/php/7.3/fpm/php.ini;\
-sudo printf "[curl]\n" | tee -a /etc/php/7.3/fpm/php.ini;\
-sudo printf "curl.cainfo = /etc/ssl/certs/ca-certificates.crt\n" | tee -a /etc/php/7.3/fpm/php.ini;
+sudo printf "[openssl]\n" | sudo tee -a /etc/php/7.3/fpm/php.ini;\
+sudo printf "openssl.cainfo = /etc/ssl/certs/ca-certificates.crt\n" | sudo tee -a /etc/php/7.3/fpm/php.ini;\
+sudo printf "[curl]\n" | sudo tee -a /etc/php/7.3/fpm/php.ini;\
+sudo printf "curl.cainfo = /etc/ssl/certs/ca-certificates.crt\n" | sudo tee -a /etc/php/7.3/fpm/php.ini;
 
 # make sure important apache modules are enabled
 sudo a2enmod headers rewrite env mime expires ssl;\
@@ -141,10 +142,10 @@ sudo service apache2 restart ;
 
 
 #mysql
-sudo apt update ;
-sudo apt-get install mysql-server -y ;
-sudo ufw allow mysql ;
-sudo apt update ;
+sudo apt update ;\
+sudo apt-get install mysql-server -y ;\
+sudo ufw allow mysql ;\
+sudo apt update ;\
 sudo apt upgrade -y;
   #Access to mysql to chenage root user password
   #sudo mysql -uroot;
