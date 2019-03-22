@@ -6,13 +6,21 @@ sudo apt install vim links lynx git diffutils htop curl wget p7zip-full unzip zi
 sudo sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)";
 sudo chsh -s /bin/zsh;
 
+sudo chmod -R 777 .zsh_history .oh-my-zsh;\
+exit;\
+sudo chown -R $(whoami) .zsh_history .oh-my-zsh;\
+cd .oh-my-zsh;\
+git config core.fileMode false;
+zsh; compaudit | xargs chmod g-w,o-w;
+
+
 #install apache
 sudo apt update ;
 sudo apt-get install apache2 -y;
 sudo apache2ctl configtest;
 
 #php 5.6
-add-apt-repository ppa:ondrej/php ;\
+sudo add-apt-repository ppa:ondrej/php ;\
 sudo apt-get update ;\
 sudo apt install php5.6 php5.6-mbstring php5.6-mcrypt php5.6-mysql php5.6-xml -y;\
 sudo apt-get install php-pear -y ;\
@@ -21,6 +29,7 @@ sudo apt install php5.6-cgi php5.6-cli php5.6-common php5.6-curl php5.6-gd php5.
 sudo service apache2 restart;
 
 #php 7.1
+sudo add-apt-repository ppa:ondrej/php ;\
 sudo apt-get install php; \
 sudo apt-get install -y --allow-downgrades --allow-remove-essential --allow-change-held-packages \
 php7.1-cli php7.1-dev \
@@ -34,6 +43,7 @@ sudo apt install php-pear php-fpm php-dev php-zip php-curl php-xmlrpc php-gd php
 sudo service apache2 restart;
 
 #php 7.2
+sudo add-apt-repository ppa:ondrej/php ;\
 sudo apt-get install -y --allow-downgrades --allow-remove-essential --allow-change-held-packages \
 php7.1-cli php7.2-dev \
 php7.2-pgsql php7.2-sqlite3 php7.2-gd \
@@ -46,6 +56,7 @@ sudo apt-get install php-cli
 sudo service apache2 restart;
 
 #php 7.3
+add-apt-repository ppa:ondrej/php ;\
 sudo apt-get install -y --allow-downgrades --allow-remove-essential --allow-change-held-packages \
 php7.3-cli php7.3-dev \
 php7.3-pgsql php7.3-sqlite3 php7.3-gd \
@@ -100,11 +111,11 @@ sudo printf "[curl]\n" | tee -a /etc/php/7.1/fpm/php.ini;\
 sudo printf "curl.cainfo = /etc/ssl/certs/ca-certificates.crt\n" | tee -a /etc/php/7.1/fpm/php.ini;
 
 #Setup some PHP-FPM options php 7.2
-sudo echo "xdebug.remote_enable = 1" >> /etc/php/7.2/mods-available/xdebug.ini;\
-sudo echo "xdebug.remote_connect_back = 1" >> /etc/php/7.2/mods-available/xdebug.ini;\
-sudo echo "xdebug.remote_port = 9000" >> /etc/php/7.2/mods-available/xdebug.ini;\
-sudo echo "xdebug.max_nesting_level = 512" >> /etc/php/7.2/mods-available/xdebug.ini;\
-sudo echo "opcache.revalidate_freq = 0" >> /etc/php/7.2/mods-available/opcache.ini;\
+sudo echo "xdebug.remote_enable = 1" >> sudo /etc/php/7.2/mods-available/xdebug.ini;\
+sudo echo "xdebug.remote_connect_back = 1" >> sudo /etc/php/7.2/mods-available/xdebug.ini;\
+sudo echo "xdebug.remote_port = 9000" >> sudo /etc/php/7.2/mods-available/xdebug.ini;\
+sudo echo "xdebug.max_nesting_level = 512" >> sudo /etc/php/7.2/mods-available/xdebug.ini;\
+sudo echo "opcache.revalidate_freq = 0" >> sduo /etc/php/7.2/mods-available/opcache.ini;\
 sudo sed -i "s/error_reporting = .*/error_reporting = E_ALL/" /etc/php/7.2/fpm/php.ini;\
 sudo sed -i "s/display_errors = .*/display_errors = On/" /etc/php/7.2/fpm/php.ini;\
 sudo sed -i "s/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/" /etc/php/7.2/fpm/php.ini;\
@@ -112,10 +123,10 @@ sudo sed -i "s/memory_limit = .*/memory_limit = 512M/" /etc/php/7.2/fpm/php.ini;
 sudo sed -i "s/upload_max_filesize = .*/upload_max_filesize = 100M/" /etc/php/7.2/fpm/php.ini;\
 sudo sed -i "s/post_max_size = .*/post_max_size = 100M/" /etc/php/7.2/fpm/php.ini;\
 sudo sed -i "s/;date.timezone.*/date.timezone = UTC/" /etc/php/7.2/fpm/php.ini;\
-sudo printf "[openssl]\n" | tee -a /etc/php/7.2/fpm/php.ini;\
-sudo printf "openssl.cainfo = /etc/ssl/certs/ca-certificates.crt\n" | tee -a /etc/php/7.2/fpm/php.ini;\
-sudo printf "[curl]\n" | tee -a /etc/php/7.2/fpm/php.ini;\
-sudo printf "curl.cainfo = /etc/ssl/certs/ca-certificates.crt\n" | tee -a /etc/php/7.2/fpm/php.ini;
+sudo printf "[openssl]\n" | sudo tee -a /etc/php/7.2/fpm/php.ini;\
+sudo printf "openssl.cainfo = /etc/ssl/certs/ca-certificates.crt\n" | sudo tee -a /etc/php/7.2/fpm/php.ini;\
+sudo printf "[curl]\n" | sudo tee -a /etc/php/7.2/fpm/php.ini;\
+sudo printf "curl.cainfo = /etc/ssl/certs/ca-certificates.crt\n" | sudo tee -a /etc/php/7.2/fpm/php.ini;
 
 #Setup some PHP-FPM options Php 7.3
 
@@ -158,39 +169,28 @@ sudo apt upgrade -y;
   #mysql> FLUSH PRIVILEGES;
   #mysql> exit;
 
-# Install node js
-sudo curl -sL https://deb.nodesource.com/setup | sudo bash - ; \
-sudo apt install nodejs; \
-sudo apt install build-essential;\
-sudo apt update ;
-
-######
-# [source](https://www.digitalocean.com/community/tutorials/how-to-set-up-a-node-js-application-for-production-on-ubuntu-18-04#step-3-%E2%80%94-installing-pm2)
-######
 
 # Set Up a Node.js Application
 cd ~;\
-curl -sL https://deb.nodesource.com/setup_8.x -o nodesource_setup.sh;\
-#nano nodesource_setup.sh
-sudo bash nodesource_setup.sh;\
-sudo apt install nodejs;\
+sudo curl -sL https://deb.nodesource.com/setup_11.x | sudo -E bash - ;\
+sudo apt install nodejs; -y \
 sudo apt install build-essential;
 
 # Install node npm
 sudo curl -L https://npmjs.com/install.sh | sudo sh ;
 
-
 ## Installing PM2
 sudo npm install pm2@latest -g;
-
 
 # Install less + grunt + sass + less-each
 sudo apt install npm -y;\
 sudo npm install -g less grunt grunt-cli;\
 sudo npm install -g sass;\
-npm install gulp-less;\
-npm i lessc-each;
+sudo npm install gulp-less;\
+sudo npm i lessc-each;
 
+ #sudo chown -R $USER:$(id -gn $USER) /home/firass/.config
+ 
 # Install composer
 sudo curl -sS https://getcomposer.org/installer | sudo php; \
 sudo mv composer.phar /usr/local/bin/composer; \
