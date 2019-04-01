@@ -206,14 +206,17 @@ sudo composer install;
 #java
 sudo apt-get install default-jre -y ; \
 sudo apt-get install default-jdk -y;\
+sudo apt install openjdk-11-jdk;\
+sudo apt install openjdk-11-jre;\
 sudo add-apt-repository ppa:webupd8team/java ;\
-sudo apt-get update; \
-sudo apt-get install oracle-java8-installer -y; \
+sudo apt-get install oracle-java8-installer -y;
 
+sudo update-alternatives --config java;
+sudo update-alternatives --config javac;
   #add java path to environment file
   #sudo nano /etc/environment;
   #add this line
-  #JAVA_HOME="/usr/lib/jvm/java-8-oracle"
+  #JAVA_HOME="/usr/lib/jvm/java-11-openjdk-amd64/bin/"
   #source /etc/environment
   #echo $JAVA_HOME
 
