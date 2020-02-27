@@ -147,6 +147,18 @@ sudo printf "openssl.cainfo = /etc/ssl/certs/ca-certificates.crt\n" | sudo tee -
 sudo printf "[curl]\n" | sudo tee -a /etc/php/7.3/fpm/php.ini;\
 sudo printf "curl.cainfo = /etc/ssl/certs/ca-certificates.crt\n" | sudo tee -a /etc/php/7.3/fpm/php.ini;
 
+
+# [xdebug]
+# zend_extension="/etc/php/7.3/mods-available/xdebug.so"
+# xdebug.remote_autostart=0
+# xdebug.remote_enable=1
+# xdebug.remote_handler="dbgp"
+# xdebug.remote_host="127.0.0.1"
+# xdebug.remote_connect_back=1
+# xdebug.remote_port=9000
+# xdebug.remote_mode=req
+# xdebug.idekey="netbeans-xdebug"
+
 # make sure important apache modules are enabled
 sudo a2enmod headers rewrite env mime expires ssl;\
 sudo service apache2 restart ;
