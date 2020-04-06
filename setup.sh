@@ -184,18 +184,18 @@ sudo apt upgrade -y;
 
 # Set Up a Node.js Application
 cd ~;\
-sudo curl -sL https://deb.nodesource.com/setup_11.x | sudo -E bash - ;\
+sudo curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash - ;\
 sudo apt install nodejs; -y \
-sudo apt install build-essential;
-
-# Install node npm
-sudo curl -L https://npmjs.com/install.sh | sudo sh ;
+sudo apt install build-essential;\
+sudo apt-get install gcc g++ make;\
+curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -;\
+echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list;\
+sudo apt-get update && sudo apt-get install yarn;
 
 ## Installing PM2
 sudo npm install pm2@latest -g;
 
 # Install less + grunt + sass + less-each
-sudo apt install npm -y;\
 sudo npm install -g less grunt grunt-cli;\
 sudo npm install -g sass;\
 sudo npm install gulp-less;\
