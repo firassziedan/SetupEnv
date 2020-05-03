@@ -199,6 +199,11 @@ sudo git checkout 9.5.2;\
 sudo ln -s /usr/local/src/drush/drush /usr/bin/drush;\
 sudo composer install;
 
+
+#config
+echo fs.inotify.max_user_watches=10524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p;
+echo "alias lg='lazygit'" >> ~/.zshrc;
+
 #java
 sudo apt install openjdk-11-jdk;\
 sudo apt install openjdk-11-jre;\
