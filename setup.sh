@@ -1,6 +1,7 @@
+sudo add-apt-repository ppa:lazygit-team/release
 sudo apt update;
 sudo apt upgrade -y;
-sudo apt install vim links lynx git diffutils htop curl wget p7zip-full unzip zip zsh fonts-powerline xclip -y;
+sudo apt install vim links lynx git diffutils htop curl wget p7zip-full unzip zip zsh fonts-powerline xclip lazygit -y;
 
 #oh-my-zsh
 sudo sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)";
@@ -19,44 +20,14 @@ sudo apt update ;
 sudo apt-get install apache2 -y;
 sudo apache2ctl configtest;
 
-#php 5.6
-sudo add-apt-repository ppa:ondrej/php ;\
-sudo apt-get update ;\
-sudo apt install php5.6 php5.6-mbstring php5.6-mcrypt php5.6-mysql php5.6-xml -y;\
-sudo apt-get install php-pear -y ;\
-sudo a2dismod php5.6 ;\
-sudo apt install php5.6-cgi php5.6-cli php5.6-common php5.6-curl php5.6-gd php5.6-imap php5.6-intl php5.6-mysql php5.6-pspell php5.6-sqlite3 php5.6-tidy php5.6-opcache php5.6-json php5.6-bz2 php5.6-mcrypt php5.6-readline php5.6-xml php5.6-xmlrpc php5.6-enchant php5.6-xsl php-all-dev php5.6-zip -y; \
-sudo service apache2 restart;
 
-#php 7.1
-sudo add-apt-repository ppa:ondrej/php ;\
-sudo apt-get install php; \
-sudo apt-get install -y --allow-downgrades --allow-remove-essential --allow-change-held-packages \
-php7.1-cli php7.1-dev \
-php7.1-pgsql php7.1-sqlite3 php7.1-gd \
-php7.1-curl php7.1-memcached \
-php7.1-imap php7.1-mysql php7.1-mbstring \
-php7.1-xml php7.1-zip php7.1-bcmath php7.1-soap \
-php7.1-intl php7.1-readline php-xdebug php-pear php7.1-fpm;\
-sudo apt install php7.1 libapache2-mod-php7.1 php7.1-common php7.1-mbstring php7.1-xmlrpc php7.1-soap php7.1-gd php7.1-xml php7.1-intl php7.1-mysql php7.1-cli php7.1-mcrypt php7.1-zip php7.1-curl ;\
-sudo apt install php-pear php-fpm php-dev php-zip php-curl php-xmlrpc php-gd php-mysql php-mbstring php-xml libapache2-mod-php
-sudo service apache2 restart;
-
-#php 7.2
-sudo add-apt-repository ppa:ondrej/php ;\
-sudo apt-get install -y --allow-downgrades --allow-remove-essential --allow-change-held-packages \
-php7.1-cli php7.2-dev \
-php7.2-pgsql php7.2-sqlite3 php7.2-gd \
-php7.2-curl php7.2-memcached \
-php7.2-imap php7.2-mysql php7.2-mbstring \
-php7.2-xml php7.2-zip php7.2-bcmath php7.2-soap \
-php7.2-intl php7.2-readline php-xdebug php-pear php7.2-fpm;\
-sudo apt install php7.2 libapache2-mod-php7.2 php7.2-common php7.2-mbstring php7.2-xmlrpc php7.2-soap php7.2-gd php7.2-xml php7.2-intl php7.2-mysql php7.2-cli php7.2-zip php7.2-curl ;\
-sudo apt-get install php-cli
-sudo service apache2 restart;
+#php
+sudo apt-get install software-properties-common;\
+sudo add-apt-repository ppa:ondrej/php;\
+sudo apt-get update;
+sudo apt-get install -y php7.3
 
 #php 7.3
-add-apt-repository ppa:ondrej/php ;\
 sudo apt-get install -y --allow-downgrades --allow-remove-essential --allow-change-held-packages \
 php7.3-cli php7.3-dev \
 php7.3-pgsql php7.3-sqlite3 php7.3-gd \
@@ -64,8 +35,17 @@ php7.3-curl php7.3-memcached \
 php7.3-imap php7.3-mysql php7.3-mbstring \
 php7.3-xml php7.3-zip php7.3-bcmath php7.3-soap \
 php7.3-intl php7.3-readline php-xdebug php-pear php7.3-fpm;\
-sudo apt install php7.3 libapache2-mod-php7.3 php7.3-common php7.3-mbstring php7.3-xmlrpc php7.3-soap php7.3-gd php7.3-xml php7.3-intl php7.3-mysql php7.3-cli php7.3-zip php7.3-curl ;\
-sudo apt-get install php-cli
+libapache2-mod-php7.3 php7.3-common php7.3-xmlrpc php7.3-gd;
+
+#php 7.4
+sudo apt-get install -y --allow-downgrades --allow-remove-essential --allow-change-held-packages \
+php7.4-cli php7.4-dev \
+php7.4-pgsql php7.4-sqlite3 php7.4-gd \
+php7.4-curl php7.4-memcached \
+php7.4-imap php7.4-mysql php7.4-mbstring \
+php7.4-xml php7.4-zip php7.4-bcmath php7.4-soap \
+php7.4-intl php7.4-readline php-xdebug php-pear php7.4-fpm;\
+libapache2-mod-php7.4 php7.4-common php7.4-xmlrpc php7.4-gd;\
 sudo service apache2 restart;
 
 #Change php version
@@ -163,13 +143,17 @@ sudo printf "curl.cainfo = /etc/ssl/certs/ca-certificates.crt\n" | sudo tee -a /
 sudo a2enmod headers rewrite env mime expires ssl;\
 sudo service apache2 restart ;
 
-
 #mysql
 sudo apt update ;\
 sudo apt-get install mysql-server -y ;\
 sudo ufw allow mysql ;\
 sudo apt update ;\
 sudo apt upgrade -y;
+
+### OR
+#mariadb
+sudo apt-get install mariadb-server
+
   #Access to mysql to chenage root user password
   #sudo mysql -uroot;
   #mysql> use mysql ;
@@ -216,8 +200,6 @@ sudo ln -s /usr/local/src/drush/drush /usr/bin/drush;\
 sudo composer install;
 
 #java
-sudo apt-get install default-jre -y ; \
-sudo apt-get install default-jdk -y;\
 sudo apt install openjdk-11-jdk;\
 sudo apt install openjdk-11-jre;\
 sudo add-apt-repository ppa:webupd8team/java ;\
