@@ -3,7 +3,7 @@ sudo add-apt-repository ppa:synapse-core/ppa;\
 sudo add-apt-repository ppa:git-core/ppa;\
 sudo apt update;\
 sudo apt upgrade -y;\
-sudo apt install vim links lynx git diffutils htop curl wget p7zip-full synapse unzip zip zsh fonts-powerline xclip clipit lazygit -y;
+sudo apt install vim links lynx git diffutils htop curl wget p7zip-full synapse unzip zip zsh fonts-powerline xclip clipit lazygit chromium-browser -y;
 
 #oh-my-zsh
 sudo sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)";
@@ -51,7 +51,10 @@ libapache2-mod-php7.4 php7.4-common php7.4-xmlrpc php7.4-gd;\
 sudo service apache2 restart;
 
 #Change php version
-sudo update-alternatives --set php /usr/bin/php7.2;
+sudo a2enmod php7.4
+### dismod 
+# sudo a2dismod php7.3
+sudo update-alternatives --set php /usr/bin/php7.4;
 
 #Set some PHP CLI settings
 sudo sed -i "s/error_reporting = .*/error_reporting = E_ALL/" /etc/php/7.1/cli/php.ini; \
