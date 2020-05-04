@@ -1,16 +1,14 @@
 sudo add-apt-repository ppa:lazygit-team/release;\
-sudo add-apt-repository ppa:synapse-core/ppa;\
 sudo add-apt-repository ppa:git-core/ppa;\
 sudo apt update;\
 sudo apt upgrade -y;\
-sudo apt install vim links lynx git diffutils htop curl wget p7zip-full synapse unzip zip zsh fonts-powerline xclip clipit lazygit chromium-browser -y;
+sudo apt install vim links lynx git diffutils htop curl wget p7zip-full unzip zip zsh fonts-powerline xclip clipit lazygit chromium-browser -y;
 
 #oh-my-zsh
 sudo sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)";
 sudo chsh -s /bin/zsh;
 
 sudo chmod -R 777 .zsh_history .oh-my-zsh;\
-exit;\
 sudo chown -R $(whoami) .zsh_history .oh-my-zsh;\
 cd .oh-my-zsh;\
 git config core.fileMode false;
