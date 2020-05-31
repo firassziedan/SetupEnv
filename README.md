@@ -2,7 +2,7 @@
 Setup Linux Commands to install what development needs
 * Apache
 * MySql
-* PHP 5.6, 7.1, 7.2, 7.3
+* PHP 7.3, 7.4
 * Node.js
 * Less & Sass
 * Composer
