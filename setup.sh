@@ -55,81 +55,12 @@ sudo a2enmod php7.4
 sudo update-alternatives --set php /usr/bin/php7.4;
 
 #Set some PHP CLI settings
-sudo sed -i "s/error_reporting = .*/error_reporting = E_ALL/" /etc/php/7.1/cli/php.ini; \
-sudo sed -i "s/display_errors = .*/display_errors = On/" /etc/php/7.1/cli/php.ini; \
-sudo sed -i "s/memory_limit = .*/memory_limit = 512M/" /etc/php/7.1/cli/php.ini; \
-sudo sed -i "s/;date.timezone.*/date.timezone = UTC/" /etc/php/7.1/cli/php.ini; \
-sudo service apache2 restart;
-
-#php 7.2
-sudo sed -i "s/error_reporting = .*/error_reporting = E_ALL/" /etc/php/7.2/cli/php.ini; \
-sudo sed -i "s/display_errors = .*/display_errors = On/" /etc/php/7.2/cli/php.ini; \
-sudo sed -i "s/memory_limit = .*/memory_limit = 512M/" /etc/php/7.2/cli/php.ini; \
-sudo sed -i "s/;date.timezone.*/date.timezone = UTC/" /etc/php/7.2/cli/php.ini; \
-sudo service apache2 restart;
-
 #Php 7.3
 sudo sed -i "s/error_reporting = .*/error_reporting = E_ALL/" /etc/php/7.3/cli/php.ini; \
 sudo sed -i "s/display_errors = .*/display_errors = On/" /etc/php/7.3/cli/php.ini; \
 sudo sed -i "s/memory_limit = .*/memory_limit = 512M/" /etc/php/7.3/cli/php.ini; \
 sudo sed -i "s/;date.timezone.*/date.timezone = UTC/" /etc/php/7.3/cli/php.ini; \
 sudo service apache2 restart;
-
-#Setup some PHP-FPM options Php 7.1
-sudo echo "xdebug.remote_enable = 1" >> /etc/php/7.1/mods-available/xdebug.ini;\
-sudo echo "xdebug.remote_connect_back = 1" >> /etc/php/7.1/mods-available/xdebug.ini;\
-sudo echo "xdebug.remote_port = 9000" >> /etc/php/7.1/mods-available/xdebug.ini;\
-sudo echo "xdebug.max_nesting_level = 512" >> /etc/php/7.1/mods-available/xdebug.ini;\
-sudo echo "opcache.revalidate_freq = 0" >> /etc/php/7.1/mods-available/opcache.ini;\
-sudo sed -i "s/error_reporting = .*/error_reporting = E_ALL/" /etc/php/7.1/fpm/php.ini;\
-sudo sed -i "s/display_errors = .*/display_errors = On/" /etc/php/7.1/fpm/php.ini;\
-sudo sed -i "s/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/" /etc/php/7.1/fpm/php.ini;\
-sudo sed -i "s/memory_limit = .*/memory_limit = 512M/" /etc/php/7.1/fpm/php.ini;\
-sudo sed -i "s/upload_max_filesize = .*/upload_max_filesize = 100M/" /etc/php/7.1/fpm/php.ini;\
-sudo sed -i "s/post_max_size = .*/post_max_size = 100M/" /etc/php/7.1/fpm/php.ini;\
-sudo sed -i "s/;date.timezone.*/date.timezone = UTC/" /etc/php/7.1/fpm/php.ini;\
-sudo printf "[openssl]\n" | tee -a /etc/php/7.1/fpm/php.ini;\
-sudo printf "openssl.cainfo = /etc/ssl/certs/ca-certificates.crt\n" | tee -a /etc/php/7.1/fpm/php.ini;\
-sudo printf "[curl]\n" | tee -a /etc/php/7.1/fpm/php.ini;\
-sudo printf "curl.cainfo = /etc/ssl/certs/ca-certificates.crt\n" | tee -a /etc/php/7.1/fpm/php.ini;
-
-#Setup some PHP-FPM options php 7.2
-sudo echo "xdebug.remote_enable = 1" >> sudo /etc/php/7.2/mods-available/xdebug.ini;\
-sudo echo "xdebug.remote_connect_back = 1" >> sudo /etc/php/7.2/mods-available/xdebug.ini;\
-sudo echo "xdebug.remote_port = 9000" >> sudo /etc/php/7.2/mods-available/xdebug.ini;\
-sudo echo "xdebug.max_nesting_level = 512" >> sudo /etc/php/7.2/mods-available/xdebug.ini;\
-sudo echo "opcache.revalidate_freq = 0" >> sduo /etc/php/7.2/mods-available/opcache.ini;\
-sudo sed -i "s/error_reporting = .*/error_reporting = E_ALL/" /etc/php/7.2/fpm/php.ini;\
-sudo sed -i "s/display_errors = .*/display_errors = On/" /etc/php/7.2/fpm/php.ini;\
-sudo sed -i "s/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/" /etc/php/7.2/fpm/php.ini;\
-sudo sed -i "s/memory_limit = .*/memory_limit = 512M/" /etc/php/7.2/fpm/php.ini;\
-sudo sed -i "s/upload_max_filesize = .*/upload_max_filesize = 100M/" /etc/php/7.2/fpm/php.ini;\
-sudo sed -i "s/post_max_size = .*/post_max_size = 100M/" /etc/php/7.2/fpm/php.ini;\
-sudo sed -i "s/;date.timezone.*/date.timezone = UTC/" /etc/php/7.2/fpm/php.ini;\
-sudo printf "[openssl]\n" | sudo tee -a /etc/php/7.2/fpm/php.ini;\
-sudo printf "openssl.cainfo = /etc/ssl/certs/ca-certificates.crt\n" | sudo tee -a /etc/php/7.2/fpm/php.ini;\
-sudo printf "[curl]\n" | sudo tee -a /etc/php/7.2/fpm/php.ini;\
-sudo printf "curl.cainfo = /etc/ssl/certs/ca-certificates.crt\n" | sudo tee -a /etc/php/7.2/fpm/php.ini;
-
-#Setup some PHP-FPM options Php 7.3
-
-sudo echo "xdebug.remote_enable = 1" >> sudo /etc/php/7.3/mods-available/xdebug.ini;\
-sudo echo "xdebug.remote_connect_back = 1" >> sudo  /etc/php/7.3/mods-available/xdebug.ini;\
-sudo echo "xdebug.remote_port = 9000" >> sudo  /etc/php/7.3/mods-available/xdebug.ini;\
-sudo echo "xdebug.max_nesting_level = 512" >>sudo  /etc/php/7.3/mods-available/xdebug.ini;\
-sudo echo "opcache.revalidate_freq = 0" >> sudo /etc/php/7.3/mods-available/opcache.ini;\
-sudo sed -i "s/error_reporting = .*/error_reporting = E_ALL/" /etc/php/7.3/fpm/php.ini;\
-sudo sed -i "s/display_errors = .*/display_errors = On/" /etc/php/7.3/fpm/php.ini;\
-sudo sed -i "s/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/" /etc/php/7.3/fpm/php.ini;\
-sudo sed -i "s/memory_limit = .*/memory_limit = 512M/" /etc/php/7.3/fpm/php.ini;\
-sudo sed -i "s/upload_max_filesize = .*/upload_max_filesize = 100M/" /etc/php/7.3/fpm/php.ini;\
-sudo sed -i "s/post_max_size = .*/post_max_size = 100M/" /etc/php/7.3/fpm/php.ini;\
-sudo sed -i "s/;date.timezone.*/date.timezone = UTC/" /etc/php/7.3/fpm/php.ini;\
-sudo printf "[openssl]\n" | sudo tee -a /etc/php/7.3/fpm/php.ini;\
-sudo printf "openssl.cainfo = /etc/ssl/certs/ca-certificates.crt\n" | sudo tee -a /etc/php/7.3/fpm/php.ini;\
-sudo printf "[curl]\n" | sudo tee -a /etc/php/7.3/fpm/php.ini;\
-sudo printf "curl.cainfo = /etc/ssl/certs/ca-certificates.crt\n" | sudo tee -a /etc/php/7.3/fpm/php.ini;
-
 
 # [xdebug]
 # zend_extension="/etc/php/7.3/mods-available/xdebug.so"
@@ -183,12 +114,8 @@ sudo apt-get update && sudo apt-get install yarn;
 sudo npm install pm2@latest -g;
 
 # Install less + grunt + sass + less-each
-sudo npm install -g less grunt grunt-cli;\
-sudo npm install -g sass;\
-sudo npm install gulp-less;\
-sudo npm i lessc-each;
-
- #sudo chown -R $USER:$(id -gn $USER) /home/firass/.config
+sudo npm install -g less grunt grunt-cli sass gulp-less lessc-each;
+#sudo chown -R $USER:$(id -gn $USER) /home/firass/.config
  
 # Install composer
 sudo curl -sS https://getcomposer.org/installer | sudo php; \
@@ -198,7 +125,7 @@ sudo ln -s /usr/local/bin/composer /usr/bin/composer;
 # Drush install latest (9.x)
 sudo git clone https://github.com/drush-ops/drush.git /usr/local/src/drush;\
 cd /usr/local/src/drush;\
-sudo git checkout 9.5.2;\
+sudo git checkout 9.7.2;\
 sudo ln -s /usr/local/src/drush/drush /usr/bin/drush;\
 sudo composer install;
 
