@@ -25,7 +25,7 @@ sudo apache2ctl configtest;
 sudo apt-get install software-properties-common;\
 sudo add-apt-repository ppa:ondrej/php;\
 sudo apt-get update;
-sudo apt-get install -y php7.3
+sudo apt-get install -y php php7.3
 
 #php 7.3
 sudo apt-get install -y --allow-downgrades --allow-remove-essential --allow-change-held-packages \
@@ -35,7 +35,8 @@ php7.3-curl php7.3-memcached \
 php7.3-imap php7.3-mysql php7.3-mbstring \
 php7.3-xml php7.3-zip php7.3-bcmath php7.3-soap \
 php7.3-intl php7.3-readline php-xdebug php-pear php7.3-fpm;\
-libapache2-mod-php7.3 php7.3-common php7.3-xmlrpc php7.3-gd;
+libapache2-mod-php7.3 php7.3-common php7.3-xmlrpc php7.3-gd;\
+sudo service apache2 restart;
 
 #php 7.4
 sudo apt-get install -y --allow-downgrades --allow-remove-essential --allow-change-held-packages \
@@ -53,14 +54,6 @@ sudo a2enmod php7.4
 ### dismod 
 # sudo a2dismod php7.3
 sudo update-alternatives --set php /usr/bin/php7.4;
-
-#Set some PHP CLI settings
-#Php 7.3
-sudo sed -i "s/error_reporting = .*/error_reporting = E_ALL/" /etc/php/7.3/cli/php.ini; \
-sudo sed -i "s/display_errors = .*/display_errors = On/" /etc/php/7.3/cli/php.ini; \
-sudo sed -i "s/memory_limit = .*/memory_limit = 512M/" /etc/php/7.3/cli/php.ini; \
-sudo sed -i "s/;date.timezone.*/date.timezone = UTC/" /etc/php/7.3/cli/php.ini; \
-sudo service apache2 restart;
 
 # [xdebug]
 # zend_extension="/etc/php/7.3/mods-available/xdebug.so"
@@ -127,7 +120,9 @@ sudo git clone https://github.com/drush-ops/drush.git /usr/local/src/drush;\
 cd /usr/local/src/drush;\
 sudo git checkout 9.7.2;\
 sudo ln -s /usr/local/src/drush/drush /usr/bin/drush;\
-sudo composer install;
+sudo composer install;\
+sudo chown -R $(whoami) /usr/local/src/drush;\
+sudo chmod -R 777 /usr/local/src/drush;
 
 
 #config
@@ -156,8 +151,8 @@ sudo update-alternatives --config javac;
 
 # Add it to git aliases:
 git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
-# Use "git lg" instead of "git log"
-# git lg
+  # Use "git lg" instead of "git log"
+  # git lg
 
 #Docker
 sudo apt-get update ;
@@ -168,5 +163,3 @@ sudo apt-get update;
 sudo apt-get install docker-ce -y;
 sudo usermod -aG docker $USER;
 sudo chmod 666 /var/run/docker.sock;
-#for testing
-sudo docker run hello-world
