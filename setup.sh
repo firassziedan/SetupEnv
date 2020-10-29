@@ -95,12 +95,12 @@ sudo apt-get install mariadb-server
 
 # Set Up a Node.js Application
 cd ~;\
-sudo curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash - ;\
-sudo apt install nodejs; -y \
+sudo curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash - ;\
+sudo apt install nodejs -y; \
 sudo apt install build-essential;\
 sudo apt-get install gcc g++ make;\
 curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -;\
-echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list;\
+echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list; \
 sudo apt-get update && sudo apt-get install yarn;
 
 ## Installing PM2
