@@ -5,8 +5,9 @@ sudo apt upgrade -y;\
 sudo apt install vim links lynx git diffutils htop curl wget p7zip-full unzip zip zsh fonts-powerline xclip clipit lazygit chromium-browser -y;
 
 #oh-my-zsh
-sudo sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)";
-sudo chsh -s /bin/zsh;
+cd ~; \
+wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh; \
+sh install.sh;
 
 sudo chmod -R 777 .zsh_history .oh-my-zsh;\
 sudo chown -R $(whoami) .zsh_history .oh-my-zsh;\
@@ -122,7 +123,8 @@ sudo git checkout 9.7.2;\
 sudo ln -s /usr/local/src/drush/drush /usr/bin/drush;\
 sudo composer install;\
 sudo chown -R $(whoami) /usr/local/src/drush;\
-sudo chmod -R 777 /usr/local/src/drush;
+sudo chmod -R 777 /usr/local/src/drush;\
+git config core.fileMode false;
 
 
 #config
