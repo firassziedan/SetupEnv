@@ -38,3 +38,19 @@ sudo pacman -S php php-apache
 #       Include conf/extra/php7_module.conf
 #
 ####
+
+sudo pacman -S  php-apache php-cgi php-fpm php-gd php-embed php-gd php-intl php-imap php-redis php-snmp  php-gd  php-imap php-intl;
+
+# Install composer
+sudo curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer --version=1.10.17; \
+
+
+#Docker
+sudo pacman -S docker;\
+sudo systemctl start docker.service;\
+sudo systemctl enable docker.service;\
+sudo usermod -aG docker $USER;
+
+#lando
+wget https://files.devwithlando.io/lando-stable.pacman;\
+sudo pacman -U lando-stable.pacman;

@@ -112,9 +112,8 @@ sudo npm install -g less grunt grunt-cli sass gulp-less lessc-each;
 #sudo chown -R $USER:$(id -gn $USER) /home/firass/.config
  
 # Install composer
-sudo curl -sS https://getcomposer.org/installer | sudo php; \
-sudo mv composer.phar /usr/local/bin/composer; \
-sudo ln -s /usr/local/bin/composer /usr/bin/composer;
+sudo curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer --version=1.10.17; \
+
 
 # Drush install latest (9.x)
 sudo git clone https://github.com/drush-ops/drush.git /usr/local/src/drush;\
