@@ -15,6 +15,12 @@ sudo systemctl restart httpd;
 # restart apache > sudo systemctl restart httpd
 ####
 
+###
+# virtual hosts
+#
+# https://www.digitalocean.com/community/tutorials/how-to-set-up-apache-virtual-hosts-on-arch-linux
+##
+
 #install Mysql (MariaDB)
 sudo pacman -S mysql;\
 sudo mysql_install_db --user=mysql --basedir=/usr --datadir=/var/lib/mysql;\
@@ -40,9 +46,22 @@ sudo pacman -S php php-apache
 ####
 
 sudo pacman -S  php-apache php-cgi php-fpm php-gd php-embed php-gd php-intl php-imap php-redis php-snmp  php-gd  php-imap php-intl;
+# > https://wiki.archlinux.org/index.php/PHP#gd
+
 
 # Install composer
-sudo curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer --version=1.10.17; \
+sudo curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer --version=1.10.17;
+
+
+# Drush install latest (9.x)
+sudo git clone https://github.com/drush-ops/drush.git /usr/local/src/drush;\
+cd /usr/local/src/drush;\
+sudo git checkout 9.7.2;\
+sudo ln -s /usr/local/src/drush/drush /usr/bin/drush;\
+sudo composer install;\
+sudo chown -R $(whoami) /usr/local/src/drush;\
+sudo chmod -R 777 /usr/local/src/drush;\
+git config core.fileMode false;
 
 
 #Docker
@@ -50,6 +69,7 @@ sudo pacman -S docker;\
 sudo systemctl start docker.service;\
 sudo systemctl enable docker.service;\
 sudo usermod -aG docker $USER;
+
 
 #lando
 wget https://files.devwithlando.io/lando-stable.pacman;\
