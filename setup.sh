@@ -1,8 +1,9 @@
 sudo add-apt-repository ppa:lazygit-team/release;\
 sudo add-apt-repository ppa:git-core/ppa;\
+sudo add-apt-repository ppa:synapse-core/ppa;\
 sudo apt update;\
 sudo apt upgrade -y;\
-sudo apt install vim links lynx git diffutils htop curl wget p7zip-full unzip zip zsh fonts-powerline xclip clipit lazygit chromium-browser -y;
+sudo apt install vim links lynx git diffutils htop curl wget p7zip-full unzip zip zsh fonts-powerline xclip clipit lazygit chromium-browser synapse -y;
 
 #oh-my-zsh
 cd ~; \
