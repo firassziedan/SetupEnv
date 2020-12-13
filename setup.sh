@@ -167,5 +167,4 @@ sudo chmod 666 /var/run/docker.sock;
 
 #Lando
 cd ~;\
-wget https://files.devwithlando.io/lando-stable.deb;\
-sudo dpkg -i lando-stable.deb;
+wget https://files.devwithlando.io/lando-stable.deb ; sudo dpkg -i lando-stable.deb;
