@@ -17,15 +17,15 @@ zsh; compaudit | xargs chmod g-w,o-w;
 
 
 #install apache
-sudo apt update ;
-sudo apt-get install apache2 -y;
+sudo apt update ;\
+sudo apt-get install apache2 -y;\
 sudo apache2ctl configtest;
 
 
 #php
 sudo apt-get install software-properties-common;\
 sudo add-apt-repository ppa:ondrej/php;\
-sudo apt-get update;
+sudo apt-get update;\
 sudo apt-get install -y php php7.3
 
 #php 7.3
@@ -112,8 +112,7 @@ sudo npm install -g less grunt grunt-cli sass gulp-less lessc-each;
 #sudo chown -R $USER:$(id -gn $USER) /home/firass/.config
  
 # Install composer
-sudo curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer --version=1.10.17; \
-
+sudo curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer --version=1.10.17;
 
 # Drush install latest (9.x)
 sudo git clone https://github.com/drush-ops/drush.git /usr/local/src/drush;\
@@ -125,16 +124,14 @@ sudo chown -R $(whoami) /usr/local/src/drush;\
 sudo chmod -R 777 /usr/local/src/drush;\
 git config core.fileMode false;
 
-
 #config
 echo fs.inotify.max_user_watches=10524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p;
 echo "alias lg='lazygit'" >> ~/.zshrc;
 
 #java
-sudo apt install openjdk-11-jdk;\
-sudo apt install openjdk-11-jre;\
-sudo add-apt-repository ppa:webupd8team/java ;\
-sudo apt-get install oracle-java8-installer -y;
+sudo apt install default-jre;\
+sudo apt install default-jdk;
+
 
 sudo update-alternatives --config java;
 sudo update-alternatives --config javac;
