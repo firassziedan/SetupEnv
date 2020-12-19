@@ -108,8 +108,8 @@ sudo apt-get update && sudo apt-get install yarn;
 sudo npm install pm2@latest -g;
 
 # Install less + grunt + sass + less-each
-sudo npm install -g less grunt grunt-cli sass gulp-less lessc-each;
-#sudo chown -R $USER:$(id -gn $USER) /home/firass/.config
+sudo npm install -g less grunt grunt-cli sass gulp-less lessc-each gulp-cli;
+#sudo chown -R $USER:$(id -gn $USER) ~/.config
  
 # Install composer
 sudo curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer --version=1.10.17;
@@ -131,7 +131,6 @@ echo "alias lg='lazygit'" >> ~/.zshrc;
 #java
 sudo apt install default-jre;\
 sudo apt install default-jdk;
-
 
 sudo update-alternatives --config java;
 sudo update-alternatives --config javac;
