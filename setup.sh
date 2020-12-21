@@ -80,7 +80,7 @@ sudo apt upgrade -y;
 
 ### OR
 #mariadb
-sudo apt-get install mariadb-server
+sudo apt-get install mariadb-server;
 
   #Access to mysql to chenage root user password
   #sudo mysql -uroot;
@@ -129,8 +129,8 @@ echo fs.inotify.max_user_watches=10524288 | sudo tee -a /etc/sysctl.conf && sudo
 echo "alias lg='lazygit'" >> ~/.zshrc;
 
 #java
-sudo apt install default-jre;\
-sudo apt install default-jdk;
+sudo apt install default-jre -y;\
+sudo apt install default-jdk -y;
 
 sudo update-alternatives --config java;
 sudo update-alternatives --config javac;
@@ -152,13 +152,13 @@ git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Crese
   # git lg
 
 #Docker
-sudo apt-get update ;
-sudo apt-get install apt-transport-https ca-certificates curl software-properties-common -y;
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add - ;
-sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" -y;
-sudo apt-get update;
-sudo apt-get install docker-ce -y;
-sudo usermod -aG docker $USER;
+sudo apt-get update;\
+sudo apt-get install apt-transport-https ca-certificates curl software-properties-common -y;\
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add - ;\
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" -y;\
+sudo apt-get update;\
+sudo apt-get install docker-ce -y;\
+sudo usermod -aG docker $USER;\
 sudo chmod 666 /var/run/docker.sock;
 
 #Lando
