@@ -50,6 +50,17 @@ php7.4-intl php7.4-readline php-xdebug php-pear php7.4-fpm;\
 libapache2-mod-php7.4 php7.4-common php7.4-xmlrpc php7.4-gd;\
 sudo service apache2 restart;
 
+#php 8
+sudo apt-get install -y --allow-downgrades --allow-remove-essential --allow-change-held-packages \
+php-cli php-dev \
+php-pgsql php-sqlite3 php-gd \
+php-curl php-memcached \
+php-imap php-mysql php-mbstring \
+php-xml php-zip php-bcmath php-soap \
+php-intl php-readline php-xdebug php-pear php-fpm;\
+libapache2-mod-php php-common php-xmlrpc php-gd;\
+sudo service apache2 restart;
+
 #Change php version
 sudo a2enmod php7.4
 ### dismod 
