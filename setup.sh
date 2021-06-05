@@ -103,6 +103,14 @@ sudo apt-get install mariadb-server;
   #mysql> UPDATE user SET authentication_string = PASSWORD('root') WHERE User = 'root';
   #mysql> FLUSH PRIVILEGES;
   #mysql> exit;
+  
+  #For mysql 8
+  #sudo mysql -uroot;
+  #mysql> use mysql ;
+  # UPDATE mysql.user SET authentication_string=null WHERE User='root';
+  # flush privileges;
+  # ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'root';
+  # flush privileges;
 
 
 # Set Up a Node.js Application
