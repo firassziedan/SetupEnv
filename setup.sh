@@ -104,6 +104,12 @@ sudo apt-get install mariadb-server;
   #mysql> FLUSH PRIVILEGES;
   #mysql> exit;
   
+  #MySql 8 
+  #mysql> ALTER USER 'root'@'localhost' IDENTIFIED BY 'root';
+  #mysql> FLUSH PRIVILEGES;
+  #mysql> exit;
+
+  
   #For mysql 8
   #sudo mysql -uroot;
   #mysql> use mysql ;
