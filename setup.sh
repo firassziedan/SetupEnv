@@ -82,6 +82,27 @@ sudo update-alternatives --set php /usr/bin/php7.4;
 sudo a2enmod headers rewrite env mime expires ssl;\
 sudo service apache2 restart ;
 
+#enable autoindex
+sudo a2dismod autoindex;\
+sudo systemctl restart apache2;
+
+#Content-Encoding Gzip
+sudo a2enmod deflate;
+
+sudo vim /etc/apache2/apache2.conf
+
+## Add this lines 
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html
+    AddOutputFilterByType DEFLATE text/css
+    AddOutputFilterByType DEFLATE text/javascript
+    AddOutputFilterByType DEFLATE application/javascript
+    AddOutputFilterByType DEFLATE application/json
+</IfModule>
+
+sudo service apache2 restart
+
+
 #mysql
 sudo apt update ;\
 sudo apt-get install mysql-server -y ;\
