@@ -26,46 +26,24 @@ sudo apache2ctl configtest;
 sudo apt-get install software-properties-common;\
 sudo add-apt-repository ppa:ondrej/php;\
 sudo apt-get update;\
-sudo apt-get install -y php php7.3
-
-#php 7.3
-sudo apt-get install -y --allow-downgrades --allow-remove-essential --allow-change-held-packages \
-php7.3-cli php7.3-dev \
-php7.3-pgsql php7.3-sqlite3 php7.3-gd \
-php7.3-curl php7.3-memcached \
-php7.3-imap php7.3-mysql php7.3-mbstring \
-php7.3-xml php7.3-zip php7.3-bcmath php7.3-soap \
-php7.3-intl php7.3-readline php-xdebug php-pear php7.3-fpm;\
-libapache2-mod-php7.3 php7.3-common php7.3-xmlrpc php7.3-gd;\
-sudo service apache2 restart;
-
-#php 7.4
-sudo apt-get install -y --allow-downgrades --allow-remove-essential --allow-change-held-packages \
-php7.4-cli php7.4-dev \
-php7.4-pgsql php7.4-sqlite3 php7.4-gd \
-php7.4-curl php7.4-memcached \
-php7.4-imap php7.4-mysql php7.4-mbstring \
-php7.4-xml php7.4-zip php7.4-bcmath php7.4-soap \
-php7.4-intl php7.4-readline php-xdebug php-pear php7.4-fpm;\
-libapache2-mod-php7.4 php7.4-common php7.4-xmlrpc php7.4-gd;\
-sudo service apache2 restart;
+sudo apt-get install -y php php8.4
 
 #php 8
 sudo apt-get install -y --allow-downgrades --allow-remove-essential --allow-change-held-packages \
-php-cli php-dev \
-php-pgsql php-sqlite3 php-gd \
-php-curl php-memcached \
-php-imap php-mysql php-mbstring \
-php-xml php-zip php-bcmath php-soap \
-php-intl php-readline php-xdebug php-pear php-fpm;\
-libapache2-mod-php php-common php-xmlrpc php-gd;\
+php8.4-cli php8.4-dev \
+php8.4-pgsql php8.4-sqlite3 php8.4-gd \
+php8.4-curl php8.4-memcached \
+php8.4-imap php8.4-mysql php8.4-mbstring \
+php8.4-xml php8.4-zip php8.4-bcmath php8.4-soap \
+php8.4-intl php8.4-readline php-xdebug php-pear php8.4-fpm;\
+libapache2-mod-php8.4 php8.4-common php8.4-xmlrpc php8.4-gd;\
 sudo service apache2 restart;
 
 #Change php version
-sudo a2enmod php7.4
+sudo a2enmod php8.4
 ### dismod 
-# sudo a2dismod php7.3
-sudo update-alternatives --set php /usr/bin/php7.4;
+# sudo a2dismod php8.3
+sudo update-alternatives --set php /usr/bin/php8.4;
 
 # [xdebug]
 # zend_extension="/etc/php/7.3/mods-available/xdebug.so"
